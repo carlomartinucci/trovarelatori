@@ -17,6 +17,9 @@
 #   end
 # end
 
+User.create email: "carlo.martinucci@gmail.com", password: "trovarelatori", first_name: "Carlo", second_name: "Martinucci", admin: true, phone: "3391326366", gender: "male", city: "Padova", public_phone: false, public_email: true, public_city: true, public_birthday: false
+User.create email: "costanza.albe@gmail.com", password: "trovarelatori", first_name: "Costanza", second_name: "Albè", gender: "female", city: "Padova", public_phone: false, public_email: true, public_city: true, public_birthday: false
+
 [
 ["Bioetica", [
   "Aborto",

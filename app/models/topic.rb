@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id         :integer          not null, primary key
+#  theme_id   :integer
+#  name       :string
+#  keywords   :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Topic < ActiveRecord::Base
   belongs_to :theme
   has_many :known_topics
@@ -31,9 +43,9 @@ class Topic < ActiveRecord::Base
 
   def set_keywords(force=false)
     keywords_list = [self.name, self.theme.name]
-    if Rails.env.production? || force
-      keywords_list += GoogleKnowledgeGraph.new(self.name).list
-    end
+    # if Rails.env.production? || force
+    #   keywords_list += GoogleKnowledgeGraph.new(self.name).list
+    # end
     keywords = keywords_list.map{|k|k.gsub(",","")}.join(",").downcase
     self.update keywords: keywords
   end

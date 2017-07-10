@@ -50,6 +50,7 @@ gem "react_on_rails", "~> 6"
 gem 'redcarpet'
 
 gem 'httparty'
+gem 'annotate'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -73,4 +74,4 @@ group :production do
   gem 'rails_12factor'
 end
 
-# ruby "2.3.3"
+ruby "2.3.1"
