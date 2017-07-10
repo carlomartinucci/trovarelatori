@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>
+    <%= @argument.name %>
+    <small>
+      <%= @argument.theme_name %>
+    </small>
+  </h1>
+</div>
+
+
+<%= render partial: 'backend/theorems/nested_theorems_panel',
+  locals: {
+    theorems: @argument.ordered_theorems,
+    argument_id: @argument.id,
+    write: true,
+    is_root: true
+  } %>
+

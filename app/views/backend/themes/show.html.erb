@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>
+    <%= Theme.model_name.human %> <%= @theme.name %>
+    <small><%= @arguments_count %> <%= Argument.model_name.human(count: @arguments_count) %></small>
+  </h1>
+</div>
+
+
+<% @arguments.order(:created_at).each do |argument| %>
+  <div class="panel panel-info">
+
+    <%= render partial: 'backend/arguments/panel_heading', locals: {argument: argument} %>
+
+    <div class="panel-body">
+      <%= render partial: 'backend/theorems/nested_theorems_panel',
+        locals: {
+          theorems: argument.ordered_theorems,
+          argument_id: argument.id,
+          write: false,
+          is_root: true
+        } %>
+    </div>
+
+  </div>
+<% end %>
+
+
+<%= form_for [:backend, Argument.new(theme_id: @theme.id)], html: {class: "inline-create"} do |f| %>
+  <%= f.hidden_field :theme_id %>
+  <%= f.text_field :name, class: "form-block" %>
+  <%= f.submit %>
+<% end %>

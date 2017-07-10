@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  journey_id: 1
+  stageable_id: 1
+  stageable_type: 1
+
+two:
+  journey_id: 1
+  stageable_id: 1
+  stageable_type: 1

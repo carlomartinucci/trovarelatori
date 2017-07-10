@@ -1,0 +1,47 @@
+it:
+  search:
+    show:
+      user: Persone
+      expert: Relatori
+      topic: Argomenti
+  knowledges:
+    unknown: Sconosciuto
+    interested: Interessato
+    private: Riunione
+    public: Conferenza
+    debate: Dibattito
+  activerecord:
+    models:
+      theme:
+        one: Tema
+        other: Temi
+      argument:
+        one: Argomentazione
+        other: Argomentazioni
+      theorem:
+        one: Teorema
+        other: Teoremi
+      connection:
+        one: Connessione
+        other: Connessioni
+      claim:
+        one: Frase
+        other: Frasi
+    attributes:
+      users:
+        email: Email
+        name: Nome
+        phone: Cellulare
+        city: Città
+        birthday: Compleanno
+      # theme:
+        # title: "Titolo"
+  helpers:
+    submit:
+      create: "Crea %{model}"
+      submit: "Salva %{model}"
+      update: "Aggiorna %{model}"
+  time:
+    formats:
+      default: "%d %m %Y"
+      date: "%d %m %Y"

@@ -1,0 +1,23 @@
+<h2><%= t ".#{type}" %></h2>
+<table class="table">
+  <tbody>
+    <% records.each_with_index do |record, index| %>
+      <% if index == 5 %>
+        <tr class="divider">
+          <td colspan="100" class="text-center">
+            <small>
+              <%= link_to "Mostra tutti (altri #{records.count - index})", "#", class: "show-more", data: {type: type} %>
+            </small>
+          </td>
+        </tr>
+      <% end%>
+
+      <tr class="tr-type-<%= type %> <%= "hidden" if index >= 5 %>">
+        <td>
+          <%= show_for_record type, record %>
+        </td>
+      </tr>
+
+    <% end%>
+  </tbody>
+</table>

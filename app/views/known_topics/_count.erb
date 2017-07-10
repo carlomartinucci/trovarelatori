@@ -1,0 +1,12 @@
+<% KnownTopic::KNOWLEDGES.each do |knowledge| %>
+  <% count = known_topics.where(knowledge: knowledge).count %>
+  <% if count > 0%>
+    <%= link_to topic_path(topic, knowledge: knowledge) do %>
+      <%= count %>
+      <%= t "knowledges.#{knowledge}" %>
+    <% end %>
+  <% else %>
+    0 <%= t "knowledges.#{knowledge}" %>
+  <% end %>
+  &nbsp;
+<% end %>

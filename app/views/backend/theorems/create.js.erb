@@ -1,0 +1,8 @@
+$("#root_nested_theorems_panel_<%= @argument.id %>").html("<%= j render partial: 'theorems/nested_theorems_panel',
+  locals: {
+    theorems: @argument.ordered_theorems,
+    argument_id: @argument.id,
+    write: true,
+    is_root: true
+  } %> "
+  )

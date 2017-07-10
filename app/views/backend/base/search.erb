@@ -1,0 +1,7 @@
+<% @claims.each do |claim| %>
+  <%= claim.value %><br/>
+<% end if @claims %>
+
+<% if @claims.nil? || @claims.empty? %>
+  Nessun risultato trovato
+<% end %>

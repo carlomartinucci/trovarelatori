@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @known_topic.user_id %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @known_topic.topic_id %>
+</p>
+
+<p>
+  <strong>Knowledge:</strong>
+  <%= @known_topic.knowledge %>
+</p>
+
+<%= link_to 'Edit', edit_known_topic_path(@known_topic) %> |
+<%= link_to 'Back', known_topics_path %>

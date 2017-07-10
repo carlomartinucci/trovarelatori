@@ -1,0 +1,50 @@
+<h1>Tutti gli argomenti</h1>
+<p>Tutti gli argomenti, divisi per tema, con l'indicazione del numero di persone per ogni grado di conoscenza, il tuo grado di conoscenza e la possibilità di modificarlo.</p>
+<% KnownTopic::KNOWLEDGES.each do |knowledge| %>
+  <p>
+    <%= knowledge_fa_icon knowledge, class: "fa-fw", text: t("knowledges.#{knowledge}") %>
+  </p>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Argomenti</th>
+      <% KnownTopic::KNOWLEDGES.each do |knowledge| %>
+        <th class="text-center">
+          <%= knowledge_fa_icon knowledge, class: "fa-fw" %>
+        </th>
+      <% end %>
+      <th class="text-center"><%= fa_icon :user, title: "Il tuo grado di conoscenza" %></th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <% @themes.sort_by{|theme| - current_user.score(theme) }.each do |theme| %>
+      <% next if theme.topics.none? %>
+
+      <tr>
+        <th colspan="10" class="text-center">
+          <%= theme.name.humanize %>
+        </th>
+      </tr>
+
+      <% theme.topics.each do |topic| %>
+        <%= render partial: "tr_topic", locals: {topic: topic, user: current_user} %>
+      <% end %>
+
+    <% end %>
+
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $(function(){
+    $(document).on("click", '[data-form="true"]', function(e){
+      e.preventDefault();
+      var form = $("form#known-topic-for-topic-" + $(this).data("topic-id"))
+      $(form).find(".form-knowledge").val($(this).data("knowledge"));
+      $(form).submit();
+    });
+  });
+</script>

@@ -1,0 +1,67 @@
+<h1><%= @user.name %></h1>
+
+<%= render partial: "user_anagraphics", locals: {user: @user} %>
+
+
+<table class="table">
+  <tbody>
+  
+    <% @themes.sort_by{|theme| - @user.score(theme) }.each do |theme| %>
+    <% next if theme.topics.none? %>
+    <% next if !current_user?(@user) && theme.topics.known_topics(@user).blank? %>
+
+      <tr>
+        <th colspan="10" class="text-center">
+          <%= theme.name.humanize %>
+        </th>
+      </tr>
+
+      <% unknown_found = false %>
+      <% theme.topics.sort_by{|topic| topic.known_topic(@user)}.each_with_index do |topic, index| %>
+        <% known_topic = topic.known_topic(@user) %>
+
+        <% if !unknown_found && known_topic.knowledge_blank_or_unknown? %>
+          <% unknown_found = true %>
+          <% if current_user?(@user) %>
+            <tr class="divider">
+              <td colspan="100" class="text-center">
+                <small>
+                  <%= link_to "Mostra sconosciuti (#{theme.topics.count - index} argomenti)", "#", class: "show-more", data: {theme_id: theme.id} %>
+                </small>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <%= render partial: "tr_topic", locals: {topic: topic, user: @user, known_topic: known_topic, hidden: unknown_found} %>
+      <% end %>
+
+    <% end %>
+
+  </tbody>
+</table>
+
+
+
+<script type="text/javascript">
+  $(function(){
+    $(document).on("click", ".btn-edit-mode", function(){
+      $(".show-mode").removeClass("show-mode").addClass("edit-mode");
+    });
+    $(document).on("click", ".btn-show-mode", function(){
+      $(".edit-mode").removeClass("edit-mode").addClass("show-mode");
+    });
+    $(document).on("click", '[data-form="true"]', function(e){
+      e.preventDefault();
+      var form = $("form#known-topic-for-topic-" + $(this).data("topic-id"))
+      $(form).find(".form-knowledge").val($(this).data("knowledge"));
+      $(form).submit();
+    });
+    $(document).on("click", ".show-more", function(e){
+      e.preventDefault();
+      $(".tr-theme-" + $(this).data("theme-id")).removeClass("hidden");
+      $(this).parents("tr").remove();
+    });
+
+  });
+</script>

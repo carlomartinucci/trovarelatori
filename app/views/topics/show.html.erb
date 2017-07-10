@@ -1,0 +1,109 @@
+<h2>
+  <%= @topic.name %>
+  <small>
+    (<%= @theme.name %>)
+  </small>  
+</h2>
+
+<div class="row">
+  <div class="col-xs-7" style="padding-right: 0;">
+    <%= form_tag "", data: {submit_on_change: true}, method: :get do %>
+      <div class="form-group input-group">
+        <div class="input-group-addon">Mostra: </div>
+        <%= select_tag :knowledge, options_for_select([["Tutti", :all]] + KnownTopic::KNOWLEDGES.map{|knowledge|[t("knowledges.#{knowledge}"), knowledge]}, @knowledge), class: "form-control" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-xs-5 text-right">
+    <div class="btn-group">
+      <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <%= fa_icon :envelope, text: "Email", class: "fa-fw" %> &nbsp; <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pull-right" role="menu">
+        <li>
+          <% users = @users_grouped.values.reduce(&:+) %>
+          <%= mail_to users.map(&:email).join(",") do %>
+            Tutti (<%= users.count %>)
+          <% end %>
+        </li>
+        <li class="divider"></li>
+        <% @users_grouped.each do |knowledge, users| %>
+          <li>
+            <%= mail_to @users_grouped[knowledge].pluck(:email).join(",") do %>
+              <%= knowledge_fa_icon knowledge, class: "fa-fw" %>
+              <%= t "knowledges.#{knowledge}" %>
+              (<%= @users_grouped[knowledge].count %>)
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<table class="table">
+  <!-- <thead> -->
+    <!-- <tr> -->
+      <!-- <th>Persona</th> -->
+      <!-- <th class="text-right"><%= fa_icon :envelope, text: "Contatta" %></th> -->
+    <!-- </tr> -->
+  <!-- </thead> -->
+  <tbody>
+  
+    <% @users_grouped.each do |knowledge, users| %>
+      <% hidden = @knowledge != "all" && @knowledge != knowledge %>
+      <tr class="<%= "hidden" if hidden %>">
+        <th colspan="10" class="text-center">
+          <%= knowledge_fa_icon knowledge %>
+          <%= t "knowledges.#{knowledge}" %>
+          (<%= pluralize users.count, "persona", "persone" %>)
+        </th>
+
+      </tr>
+
+      <% users.sort_by{|u| - u.score(@theme)}.each_with_index do |user, index| %>
+
+        <% if index == 5 %>
+          <tr class="divider <%= "hidden" if hidden %>">
+            <td colspan="100" class="text-center">
+              <small>
+                <%= link_to "Mostra tutti (altri #{users.count - 5})", "#", class: "show-more", data: {knowledge: knowledge} %>
+              </small>
+            </td>
+          </tr>
+          <% hidden = true %>
+        <% end %>
+
+        <tr class="<%= "hidden" if hidden %> tr-<%= knowledge %>" data-score=<%= user.score @theme %>>
+          <th>
+            <%= link_to user.name, user %>
+          </th>
+
+          <td class="text-right">
+            <%= mail_to user.email, class: "btn btn-table btn-default" do %>
+              <%= fa_icon :envelope, text: "Email", class: "fa-fw" %>
+            <% end %>
+          </td>
+
+        </tr>
+
+      <% end %>
+    <% end %>
+
+  </tbody>
+</table>
+
+
+<script type="text/javascript">
+  $(function(){
+    $(document).on("change", '[data-submit-on-change="true"]', function(){
+      $(this).submit();
+    });
+    $(document).on("click", ".show-more", function(e){
+      e.preventDefault();
+      $(".tr-" + $(this).data("knowledge")).removeClass("hidden");
+      $(this).parents("tr").remove();
+    });
+  });
+</script>

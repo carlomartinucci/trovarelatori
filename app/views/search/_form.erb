@@ -1,0 +1,10 @@
+<% search_sample = ["Movimento cattolico", "Marco Invernizzi"].sample %>
+<%= form_tag searchs_path, method: :get, remote: true, autocomplete: false do %>
+  <div class="form-group input-group">
+    <%= text_field_tag :q, @q, class: "form-control", placeholder: "ad es. \"#{search_sample}\"" %>
+    <span class="input-group-btn">
+      <%= button_tag fa_icon(:search), class: "btn btn-primary" %>
+      </button>
+    </span>
+  </div>
+<% end %>

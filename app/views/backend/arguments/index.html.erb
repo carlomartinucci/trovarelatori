@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1><%= @arguments.count %> <%= Argument.model_name.human(count: @arguments.count) %></h1>
+</div>
+
+
+<% @arguments.each do |argument| %>
+  <div class="panel panel-info">
+
+    <%= render partial: "panel_heading", locals: {argument: argument} %>
+
+    <div class="panel-body">
+      <% argument.root_theorems.each do |theorem| %>
+        <%= link_to truncate(theorem.claim_value, length: 60), [:backend, theorem], class: "btn btn-warning btn-outline", title: theorem.claim_value %>
+      <% end %>
+    </div>
+
+  </div>
+<% end %>
+
+
+<%= render partial: 'form', locals: {argument: Argument.new} %>

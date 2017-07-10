@@ -1,0 +1,80 @@
+<div class="panel-body anagraphics editable">
+  <%= form_for user, remote: true do |f| %>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <%= t "activerecord.attributes.users.email" %>:
+        </span>
+        <%= f.email_field :email, class: "form-control", disabled: true, title: "L'email non può essere modificata" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          Visibilità <%= t "activerecord.attributes.users.email" %>:
+        </span>
+        <%= f.select :public_email, [["Pubblica", true], ["Privata", false]], {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <%= t "activerecord.attributes.users.phone" %>:
+        </span>
+        <%= f.text_field :phone, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          Visibilità <%= t "activerecord.attributes.users.phone" %>:
+        </span>
+        <%= f.select :public_phone, [["Pubblica", true], ["Privata", false]], {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <%= t "activerecord.attributes.users.city" %>:
+        </span>
+        <%= f.text_field :city, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          Visibilità <%= t "activerecord.attributes.users.city" %>:
+        </span>
+        <%= f.select :public_city, [["Pubblica", true], ["Privata", false]], {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <%= t "activerecord.attributes.users.birthday" %>:
+        </span>
+        <%= f.text_field :birthday, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          Visibilità <%= t "activerecord.attributes.users.birthday" %>:
+        </span>
+        <%= f.select :public_birthday, [["Pubblica", true], ["Privata", false]], {}, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Aggiorna", class: "btn btn-primary" %>
+      <%= button_tag "Annulla", class: "btn btn-default btn-show-mode", type: :button %>
+    </div>
+  <% end %>
+</div>

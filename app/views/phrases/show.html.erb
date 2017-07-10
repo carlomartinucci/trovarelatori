@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Claim:</strong>
+  <%= @phrase.claim_id %>
+</p>
+
+<p>
+  <strong>Theorem:</strong>
+  <%= @phrase.theorem_id %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @phrase.position %>
+</p>
+
+<%= link_to 'Edit', edit_phrase_path(@phrase) %> |
+<%= link_to 'Back', phrases_path %>

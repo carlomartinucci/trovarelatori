@@ -1,0 +1,18 @@
+<div class="panel panel-primary show-mode" id="user-anagraphics">
+  <div class="panel-heading">
+    Anagrafica
+
+    <% if current_user?(user) %>
+      <div class="pull-right">
+        <%= link_to fa_icon(:edit, text: "Modifica"), "#", class: "btn btn-default btn-xs btn-edit-mode" %>
+      </div>
+    <% end %>
+
+  </div>
+  <%= render partial: "anagraphics", locals: {user: user} %>
+  <%= render partial: "edit_anagraphics", locals: {user: user} if current_user?(user) %>
+
+  <!-- <div class="panel-footer"> -->
+    <!-- Panel Footer -->
+  <!-- </div> -->
+</div>

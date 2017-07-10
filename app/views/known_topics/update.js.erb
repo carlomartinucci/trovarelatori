@@ -1,0 +1,5 @@
+var tr = 'tr.tr-topic-<%= @known_topic.topic_id %>';
+var html = "<%= j render partial: "#{@from}/tr_topic", locals: {topic: @known_topic.topic, user: current_user, known_topic: @known_topic, hidden: false} %>"
+console.log("tr", tr)
+console.log("html", html)
+$(tr).replaceWith(html);

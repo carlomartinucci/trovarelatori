@@ -1,0 +1,47 @@
+<ul class="nav navbar-top-links navbar-right">
+  <% if user_signed_in? %>
+
+    <%#= backendNavLinks [Theme, Argument, Theorem, Claim] %>
+
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-user">
+        <li>
+          <%= link_to user_path(current_user) do %> 
+            <i class="fa fa-user fa-fw"></i> <%= current_user.email %>
+          <% end %>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <%= link_to destroy_user_session_path, :method => :delete do %> 
+            <i class="fa fa-sign-out fa-fw"></i> Esci
+          <% end %>
+        </li>
+      </ul>
+    </li>
+  <% else %>
+    <li>
+    <ul>
+      
+      
+    <%= form_for User.new, url: session_path(User), html: {class: "form-inline", style: "margin-top: 8px;"} do |f| %>
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, placeholder: "email", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "off", placeholder: "password", class: "form-control" %>
+      </div>
+      &nbsp; 
+      <label>
+        <%= f.check_box :remember_me %>
+        Ricordami?
+      </label>
+      &nbsp; 
+      <%= f.submit "Entra", class: "btn btn-default" %>
+    <% end %>
+    </ul>
+    </li>
+  <% end %>
+</ul>

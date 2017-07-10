@@ -1,0 +1,29 @@
+<h1>Teorema <%= @theorem.claim_value %></h1>
+
+<table>
+  <tbody>
+    <% @theorem.reasons.each do |theorem| %>
+      <tr>
+        <td><%= link_to 'X', theorem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_theorem_path(theorem) %></td>
+        <td><%= theorem.claim_value %></td>
+        <td><%= theorem.argument_name %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <%= form_for @new_theorem, html: {class: "inline-create"} do |f| %>
+        <%= hidden_field_tag :consequence_id, @theorem.id %>
+        <td></td>
+        <td>
+          <%= f.submit %>
+        </td>
+        <td>
+          <%= f.select :claim_id, Claim.pluck(:value, :id), class: "form-block" %>
+        </td>
+        <td>
+          <%= f.hidden_field :argument_id %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

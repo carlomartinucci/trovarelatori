@@ -1,0 +1,51 @@
+<tr class="tr-topic tr-topic-<%= topic.id %> tr-theme-<%= topic.theme_id %> <%= "hidden" if hidden %> tr-<%= known_topic.knowledge || :unknown %>">
+  <th class="th-topic">
+    <%= link_to(topic.name, topic) %>
+  </th>
+
+  <td class="text-nowrap">
+    <%= knowledge_fa_icon known_topic.knowledge, class: "fa-fw" %>
+    <%= t("knowledges.#{known_topic.knowledge || :unknown}") %>
+  </td>
+
+
+  <% if current_user?(user) %>
+    <td>
+      
+      <ul class="nav">
+        <li class="dropdown">
+          <a class="dropdown-toggle text-center" data-toggle="dropdown" href="#" style="padding: 0;">
+            <i class="fa fa-cog"></i>
+            <!-- &nbsp; <i class="fa fa-caret-down"></i> -->
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a>
+              Il tuo grado di conoscenza
+            </a></li>
+            <li class="divider"></li>
+            <li class="<%= known_topic.knowledge.blank? ? "active" : "" %>">
+              <%= link_to "/known_topics/#{known_topic.id}?from=users", method: :delete, remote: true do %>
+                <%= knowledge_fa_icon "unknown", text: t("knowledges.unknown"), class: "fa-fw" %>
+              <% end %>
+            </li>
+            <% KnownTopic::KNOWLEDGES.each do |knowledge| %>
+              <li class="<%= known_topic.knowledge == knowledge ? "active" : "" %>">
+                <%= link_to "#", data: {form: true, knowledge: knowledge, topic_id: topic.id} do %>
+                  <%= knowledge_fa_icon knowledge, text: t("knowledges.#{knowledge}"), class: "fa-fw" %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      <%= form_for known_topic, html: {id:"known-topic-for-topic-#{topic.id}"}, remote: true do |f| %>
+        <%= f.hidden_field :knowledge, value: "", class: "form-knowledge" %>
+        <%= f.hidden_field :topic_id, value: topic.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= hidden_field_tag :from, :users %>
+      <% end %>
+
+    </td>
+  <% end %>
+  
+</tr>

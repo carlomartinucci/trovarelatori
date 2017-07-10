@@ -1,0 +1,26 @@
+// Place all the styles related to the search controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  -webkit-transition: all 0.4s ease-in-out;
+       -o-transition: all 0.4s ease-in-out;
+          transition: all 0.4s ease-in-out;
+
+  .search-description {
+    margin-bottom: 10px;    
+  }
+
+  &.search-index {
+    margin-top: 30vh;
+    margin-bottom: 30vh;
+  }
+  &.search-show {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

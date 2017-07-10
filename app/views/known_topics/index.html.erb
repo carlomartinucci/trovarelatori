@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Known Topics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Topic</th>
+      <th>Knowledge</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @known_topics.each do |known_topic| %>
+      <tr>
+        <td><%= known_topic.user_id %></td>
+        <td><%= known_topic.topic_id %></td>
+        <td><%= known_topic.knowledge %></td>
+        <td><%= link_to 'Show', known_topic %></td>
+        <td><%= link_to 'Edit', edit_known_topic_path(known_topic) %></td>
+        <td><%= link_to 'Destroy', known_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Known topic', new_known_topic_path %>

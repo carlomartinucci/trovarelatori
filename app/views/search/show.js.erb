@@ -1,0 +1,9 @@
+$("html, body").animate({ scrollTop: 0 }, "slow");
+
+toggleFormWrapper("<%= @q %>");
+toggleSuggested("<%= @q %>");
+
+$("#results").html("<%= j render partial: "results", locals: {experts: @experts, topics: @topics, users: @users, q: @q} %>");
+
+$("#q").val("<%= @q %>");
+window.history.pushState({}, "", "/search/<%= @q %>");

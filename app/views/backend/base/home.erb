@@ -1,0 +1,45 @@
+<% if current_user && !current_user.editor? %>
+  <h1 class="text-center">
+    Grazie!
+  </h1>
+  <p class="text-center">
+    Grazie per esserti iscritto al backend di Spiegami, e voler far parte della nostra squadra di collaboratori.
+  </p>
+  <p class="text-center">
+    Esplora i temi alla tua sinistra, in particolare il tema "Referendum Costituzionale 2016" ha la stessa struttura che hai visto in <%= link_to "Spiegami - il Referendum", "https://www.spiegami.github.io/referendum", target: "_blank" %>. Qui sul backend viene visualizzata in modo che sia più facile ampliarla.
+  </p>
+  <p class="text-center">
+    A breve ti abiliterò come "editor", e potrai iniziare tu stesso ad inserire le argomentazioni.
+  </p>
+  <p class="text-center">
+    (Nota: è possibile che tu finisca su questa pagina dopo aver cliccato da qualche parte. Se succede, è perché finché non vieni abilitato come "editor" le funzionalità sono limitate).
+  </p>
+<% elsif current_user && current_user.editor? %>
+  <h1 class="text-center">
+    Grazie!
+  </h1>
+  <p class="text-center">
+    Grazie per esserti iscritto al backend di Spiegami, e di far parte della nostra squadra di collaboratori.
+  </p>
+  <p class="text-center">
+    Inserisci nuove argomentazioni e teoremi senza paura: parti da uno dei documenti nella <%= link_to "cartella su Google Drive", "https://drive.google.com/drive/u/1/folders/0B1-3lVBYMVXZQmRpRWU3T1BUZ3M" %>, entra nel tema "La liberalizzazione delle droghe leggere" e spiegami!
+  </p>
+  <p class="text-center">
+    A breve sarà anche disponibile un tutorial che ti mosterà come inserire nuovi ragionamenti a partire da una fonte!
+  </p>
+
+  <hr/>
+
+  <div>
+    <%= markdown render partial: 'static/changelog' %>
+  </div>
+
+<% else %>
+  <p class="text-center">Questo è il backend di Spiegami.</p>
+  <p class="text-center">
+    Se ti sei già registrato, accedi inserendo il tuo indirizzo email e la tua password in alto.
+  </p>
+  <p class="text-center">
+    Altrimenti, <%= link_to 'registrati a Spiegami', new_user_registration_path, target: "_blank" %>. 
+  </p>
+<% end %>

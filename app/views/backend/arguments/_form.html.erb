@@ -1,0 +1,14 @@
+<tr>
+  <%= form_for [:backend, argument], html: {class: "inline-create"} do |f| %>
+    <td></td>
+    <td>
+      <%= f.submit %>
+    </td>
+    <td>
+      <%= f.select :theme_id, [nil] + Theme.pluck(:name, :id), class: "form-block" %>
+    </td>
+    <td>
+      <%= f.text_field :name, class: "form-block", placeholder: "Scrivi un'argomentazione" %>
+    </td>
+  <% end %>
+</tr>

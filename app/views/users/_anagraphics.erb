@@ -1,0 +1,14 @@
+<div class="panel-body anagraphics uneditable">
+  <% [:email, :phone, :city, :birthday].each do |attribute| %>
+    <p>
+      <%= t "activerecord.attributes.users.#{attribute}" %>:
+      <% if current_user?(user) %>
+        <%= show_visible user, attribute %>
+        &nbsp;
+        <%= show_visibility user, attribute %>
+      <% else %>
+        <%= show_if_public user, attribute %>
+      <% end %>
+    </p>
+  <% end %>
+</div>

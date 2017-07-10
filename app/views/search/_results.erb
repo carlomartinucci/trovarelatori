@@ -1,0 +1,16 @@
+<% if q.present? %>
+
+  <%= render partial: "show", locals: {records: experts, type: :expert} if experts.any? %>
+
+  <%= render partial: "show", locals: {records: topics, type: :topic} if topics.any? %>
+
+  <%= render partial: "show", locals: {records: users, type: :user} if users.any? %>
+
+  <% if users.none? && experts.none? && topics.none? %>
+    <p>
+      Nessun risultato per <%= q %>.
+    </p>
+    <%= render partial: "suggested", locals: {searchs: @searchs} %>
+  <% end %>
+
+<% end %>

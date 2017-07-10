@@ -1,0 +1,40 @@
+<h1>Utenti</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Ruolo</th>
+      <th>Telefono</th>
+      <th>Ultimo Login</th>
+      <th>Ultimo IP</th>
+      <th># Log</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.order(last_sign_in_at: :desc).each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= user.admin? ? "Admin" : "" %>
+          <%= user.editor? ? "Editor" : "Nessuno" %>
+        </td>
+        <td><%= user.phone %></td>
+        <td><%= user.last_sign_in_at %></td>
+        <td><%= user.last_sign_in_ip %></td>
+        <td><%= user.sign_in_count %></td>
+        <!-- <td><%= link_to 'Show', user %></td> -->
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <!-- <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to 'X', argument, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= link_to 'Modifica', edit_argument_path(argument) %></td>
+  <td><%= argument.theme.try(:name) %></td>
+  <td><%= argument.name %></td>
+</tr>

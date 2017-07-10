@@ -1,0 +1,2 @@
+$("#panel-heading-theorem-<%= @theorem.id %>").replaceWith(
+  "<%= j render partial: 'backend/theorems/panel_heading', locals: {theorem: @theorem} %>")

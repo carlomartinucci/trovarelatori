@@ -1,0 +1,51 @@
+<% known_topics = topic.known_topics %>
+<% known_topic  = topic.known_topic(user) %>
+<tr class="tr-topic tr-topic-<%= topic.id %> <%= known_topic.knowledge %>">
+  <th class="th-topic <%= known_topic.knowledge ? "active" : "" %>">
+    <%= known_topics.any? ? link_to(topic.name, topic) : topic.name %>
+  </th>
+
+  <% KnownTopic::KNOWLEDGES.each do |knowledge| %>
+    <td class="text-center <%= known_topic.knowledge == knowledge ? "active" : "" %>">
+      <%= known_topics.where(knowledge: knowledge).count %>
+    </td>
+  <% end %>
+
+  <td>
+    
+    <ul class="nav">
+      <li class="dropdown">
+        <a class="dropdown-toggle text-center" data-toggle="dropdown" href="#" style="padding: 0;">
+          <i class="fa fa-cog"></i>
+          <!-- &nbsp; <i class="fa fa-caret-down"></i> -->
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a>
+            Il tuo grado di conoscenza
+          </a></li>
+          <li class="divider"></li>
+          <li class="<%= known_topic.knowledge.blank? ? "active" : "" %>">
+            <%= link_to "/known_topics/#{known_topic.id}?from=topics", method: :delete, remote: true do %>
+              <%= knowledge_fa_icon "unknown", text: t("knowledges.unknown"), class: "fa-fw" %>
+            <% end %>
+          </li>
+          <% KnownTopic::KNOWLEDGES.each do |knowledge| %>
+            <li class="<%= known_topic.knowledge == knowledge ? "active" : "" %>">
+              <%= link_to "#", data: {form: true, knowledge: knowledge, topic_id: topic.id} do %>
+                <%= knowledge_fa_icon knowledge, text: t("knowledges.#{knowledge}"), class: "fa-fw" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+    <%= form_for known_topic, html: {id:"known-topic-for-topic-#{topic.id}"}, remote: true do |f| %>
+      <%= f.hidden_field :knowledge, value: "", class: "form-knowledge" %>
+      <%= f.hidden_field :topic_id, value: topic.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= hidden_field_tag :from, :topics %>
+    <% end %>
+
+  </td>
+  
+</tr>

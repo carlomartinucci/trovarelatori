@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1><%= @claims.count %> <%= Claim.model_name.human(count: @claims.count) %></h1>
+</div>
+
+<table>
+
+  <tbody>
+    <% @claims.each do |claim| %>
+      <tr>
+        <td><%= link_to 'X', [:backend, claim], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_backend_claim_path(claim) %></td>
+        <td><%= claim.value %></td>
+        <td><%= claim.user.try(:email) if can?(:see_owner, claim) %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <%= form_for [:backend, Claim.new], html: {class: "inline-create"} do |f| %>
+          <td></td>
+          <td>
+            <%= f.submit %>
+          </td>
+          <td>
+            <%= f.text_field :value, class: "form-block" %>
+          </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<br>

@@ -1,0 +1,15 @@
+<p>Potrebbero interessarti questi argomenti:</p>
+<% searchs[:topics].sample(5).each do |topic| %>
+  <p><%= link_to topic.name, topic %></p>
+<% end %>
+
+<p>Oppure queste persone:</p>
+<% searchs[:experts].first(5).each do |user| %>
+  <p><%= link_to user.name, user %></p>
+<% end %>
+
+<p>Oppure ricercare questi temi:</p>
+<% searchs[:themes].sample(5).each do |theme| %>
+  <p><%= link_to "Cerca '#{theme.name}'", search_path(theme.name), remote: true %></p>
+<% end %>
+
