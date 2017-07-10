@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
     known_topics_grouped = @topic.known_topics.group_by(&:knowledge)
     @users_grouped = {}
     KnownTopic::KNOWLEDGES.each do |knowledge|
-      @users_grouped[knowledge] = User.where(id: known_topics_grouped[knowledge].map(&:user_id))
+      @users_grouped[knowledge] = known_topics_grouped[knowledge] ? User.where(id: known_topics_grouped[knowledge].map(&:user_id)) : User.none
     end
     render layout: "knowledge"
   end
