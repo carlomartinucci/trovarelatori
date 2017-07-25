@@ -42,10 +42,11 @@ class Topic < ActiveRecord::Base
 
 
   def set_keywords(force=false)
+    p "setting keywords for topic #{self.name}"
     keywords_list = [self.name, self.theme.name]
-    # if Rails.env.production? || force
-    #   keywords_list += GoogleKnowledgeGraph.new(self.name).list
-    # end
+    if Rails.env.production? || force
+      keywords_list += GoogleKnowledgeGraph.new(self.name).list
+    end
     keywords = keywords_list.map{|k|k.gsub(",","")}.join(",").downcase
     self.update keywords: keywords
   end

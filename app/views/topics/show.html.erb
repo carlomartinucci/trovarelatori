@@ -52,6 +52,7 @@
   <tbody>
   
     <% @users_grouped.each do |knowledge, users| %>
+      <% next if users.none? %>
       <% hidden = @knowledge != "all" && @knowledge != knowledge %>
       <tr class="<%= "hidden" if hidden %>">
         <th colspan="10" class="text-center">

@@ -12,8 +12,8 @@ default: &default
   host: localhost
   database: trovarelatori
   username: ch
-  password: ch
-  port: 5434
+  password: c
+  port: 5432
 
 development:
   <<: *default

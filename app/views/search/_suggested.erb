@@ -1,15 +1,22 @@
-<p>Potrebbero interessarti questi argomenti:</p>
-<% searchs[:topics].sample(5).each do |topic| %>
-  <p><%= link_to topic.name, topic %></p>
+<% if searchs[:topics].any? %>
+  <p>Potrebbero interessarti questi argomenti:</p>
+  <% searchs[:topics].sample(5).each do |topic| %>
+    <p><%= link_to topic.name, topic %></p>
+  <% end %>
 <% end %>
 
-<p>Oppure queste persone:</p>
-<% searchs[:experts].first(5).each do |user| %>
-  <p><%= link_to user.name, user %></p>
+<% if searchs[:experts].any? %>
+  <p>Oppure queste persone:</p>
+  <% searchs[:experts].first(5).each do |user| %>
+    <p><%= link_to user.name, user %></p>
+  <% end %>
 <% end %>
 
-<p>Oppure ricercare questi temi:</p>
-<% searchs[:themes].sample(5).each do |theme| %>
-  <p><%= link_to "Cerca '#{theme.name}'", search_path(theme.name), remote: true %></p>
+<% if searchs[:themes].any? %>
+  <p>Oppure ricercare questi temi:</p>
+  <% searchs[:themes].sample(5).each do |theme| %>
+    <p><%= link_to "Cerca '#{theme.name}'", search_path(theme.name), remote: true %></p>
+  <% end %>
 <% end %>
 
+Oppure vuoi esplorare <%= link_to "tutti i temi", topics_path %>?
