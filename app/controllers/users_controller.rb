@@ -13,13 +13,11 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @themes = Theme.includes(topics: :known_topics)
-    render layout: "knowledge"
   end
 
   # GET /me
   def me
     @themes = Theme.includes(topics: :known_topics)
-    render layout: "knowledge"
   end
 
   # GET /users/new

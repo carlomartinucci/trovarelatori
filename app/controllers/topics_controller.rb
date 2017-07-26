@@ -6,7 +6,6 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @themes = Theme.includes(topics: :known_topics)
-    render layout: "knowledge"
   end
 
   # GET /topics/1
@@ -19,7 +18,6 @@ class TopicsController < ApplicationController
       known_topics = known_topics_grouped[knowledge] || KnownTopic.none
       @users_grouped[knowledge] = User.where(id: known_topics.map(&:user_id))
     end
-    render layout: "knowledge"
   end
 
   # GET /topics/new

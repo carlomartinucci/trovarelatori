@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-  layout "knowledge"
   before_action :set_query
   before_action :search_q
 

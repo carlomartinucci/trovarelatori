@@ -52,6 +52,8 @@ gem 'redcarpet'
 gem 'httparty'
 gem 'annotate'
 
+gem 'toastr-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

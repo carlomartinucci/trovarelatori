@@ -1,0 +1,11 @@
+<% if flash %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      <% flash.each do |type, message| %>
+        <% type = "success" if type == "notice" %>
+        <% type = "warning" if type == "alert" %>
+        toastr.<%= type %>('<%= message %>');
+      <% end%>
+    });
+  </script>
+<% end %>

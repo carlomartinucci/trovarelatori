@@ -1,9 +1,16 @@
+console.log("search 1");
 $("html, body").animate({ scrollTop: 0 }, "slow");
+console.log("search 2");
 
 toggleFormWrapper("<%= @q %>");
+console.log("search 3");
 toggleSuggested("<%= @q %>");
+console.log("search 4");
 
 $("#results").html("<%= j render partial: "results", locals: {experts: @experts, topics: @topics, users: @users, q: @q} %>");
+console.log("search 5");
 
 $("#q").val("<%= @q %>");
+console.log("search 6");
 window.history.pushState({}, "", "/search/<%= @q %>");
+console.log("search 7");

@@ -16,6 +16,7 @@
 //= require select2-full
 //= require selectize
 //= require restore_on_backspace/plugin
+//= require toastr
 //= require_tree .
 
 
