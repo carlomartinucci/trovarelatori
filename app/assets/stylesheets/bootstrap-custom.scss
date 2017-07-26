@@ -12,10 +12,15 @@
 
 #wrapper {
   position: relative;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
 }
 
 #page-wrapper {
   padding-bottom: 80px;
+  margin-left: 0;
 }
 
 .footer {
@@ -96,7 +101,7 @@
   color: rgba(100,100,100,1);
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
+.navbar-top-links > li > a:hover, .navbar-top-links > li > a:focus {
   color: $ac-red;
   background-color: inherit;
 }

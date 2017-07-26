@@ -6,12 +6,19 @@
   </th>
 
   <% KnownTopic::KNOWLEDGES.each do |knowledge| %>
+    <% count = known_topics.where(knowledge: knowledge).count %>
     <td class="text-center <%= known_topic.knowledge == knowledge ? "active" : "" %>">
-      <%= known_topics.where(knowledge: knowledge).count %>
+      <%= link_to "#", data: {form: true, knowledge: knowledge, topic_id: topic.id}, class: "hidden-xs" do %>
+        <%= knowledge_fa_icon knowledge, text: count, title: "Clicca per settare", class: "fa-fw" %>
+      <% end %>
+
+      <span class="visible-xs">
+        <%= count %>
+      </span>
     </td>
   <% end %>
 
-  <td>
+  <td class="visible-xs">
     
     <ul class="nav">
       <li class="dropdown">

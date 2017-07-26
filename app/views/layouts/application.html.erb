@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="description" content="Trova Relatori è un'applicazione che ti permette di individuare, all'interno di Alleanza Cattolica, le persone esperte o interessate a un argomento.">
     <meta name="author" content="Carlo Martinucci">
     <title>Trova Relatori</title>
@@ -20,11 +20,11 @@
   </head>
 
 <body>
-  <div id="wrapper" style="max-width: 760px; margin-left: auto; margin-right: auto; min-height: 100vh;">
+  <div id="wrapper">
 
     <%= render partial: 'layouts/navigation' %>
 
-    <div id="page-wrapper" style="margin-left: 0;">
+    <div id="page-wrapper">
       <div style="height: 1px;"></div>
       <%= yield %>
 
