@@ -19,6 +19,7 @@
  */
 
 @includes "select2-bootstrap";
+@import "variables";
 
 .nav > li > span {
   position: relative;
@@ -59,178 +60,6 @@
   border-radius: 3px;
   margin: -5px 0;
 }
-
-// body {
-//   margin: 0;
-//   font-family: verdana, arial, helvetica, sans-serif;
-//   font-size: 16px;
-//   line-height: 1.4;
-//   background-color: $color-secondary-lightest;
-//   color: $color-primary-darkest;
-//   h1 {
-//     font-size: 3em;
-//     font-weight: 400;
-//     margin: 0;
-//   }
-//   h2 {
-//     font-size: 1.8em;
-//     font-weight: 400;
-//     margin: 0;
-//   }
-//   h3 {
-//     font-size: 1.4em;
-//     font-weight: 400;
-//   }
-//   h4 {
-//     font-size: 1.2em;
-//     font-weight: 400;
-//   }
-// }
-
-
-// p, ol, ul, td {
-//   font-family: verdana, arial, helvetica, sans-serif;
-//   font-size: 16px;
-//   line-height: 1.4;
-// }
-
-
-// pre {
-//   background-color: #eee;
-//   padding: 10px;
-//   font-size: 14px;
-// }
-
-// a {
-//   color: $color-secondary-darker;
-
-//   &:visited {
-//     color: $color-secondary-darker;
-//   }
-
-//   &:hover {
-//     color: #A4C663;
-//     background-color: #AA3939;
-//   }
-// }
-
-// div {
-//   &.field, &.actions {
-//     margin-bottom: 10px;
-//   }
-// }
-
-// #notice {
-//   // color: green;
-// }
-
-// .field_with_errors {
-//   padding: 2px;
-//   background-color: red;
-//   display: table;
-// }
-
-// #error_explanation {
-//   width: 450px;
-//   border: 2px solid red;
-//   padding: 7px;
-//   padding-bottom: 0;
-//   margin-bottom: 20px;
-//   background-color: #f0f0f0;
-
-//   h2 {
-//     text-align: left;
-//     font-weight: bold;
-//     padding: 5px 5px 5px 15px;
-//     font-size: 12px;
-//     margin: -7px;
-//     margin-bottom: 0px;
-//     background-color: #c00;
-//     color: #fff;
-//   }
-
-//   ul li {
-//     font-size: 12px;
-//     list-style: square;
-//   }
-// }
-
-// input, textarea, keygen, select, button {
-//     text-rendering: auto;
-//     color: initial;
-//     letter-spacing: normal;
-//     word-spacing: normal;
-//     text-transform: none;
-//     text-indent: 0px;
-//     text-shadow: none;
-//     display: inline-block;
-//     text-align: start;
-//     margin: 0em 0em 0em 0em;
-//     font: inherit;
-// }
-
-// header {
-//   background-color: $color-primary-darker;
-//   color: $color-secondary-lightest;
-//   padding: $base-padding;
-//   display: flex;
-//   flex-flow: row nowrap;
-//   justify-content: space-between;
-// }
-
-// .inline-flex {
-//   display: flex;
-//   flex-flow: row nowrap;
-//   justify-content: space-between;
-//   .sm {
-//     flex: 0 1 200px;
-//   }
-//   .lg {
-//     flex: 1 0 400px;
-//   }
-// }
-
-// .inline-login {
-//   display: flex;
-//   flex-flow: row nowrap;
-//   justify-content: space-between;
-//   input#user_remember_me {
-//     width: 21px;
-//     height: 21px;
-//     margin: 0;
-//     vertical-align: middle;
-//   }
-//   .inline-login-block {
-//     line-height: 28px;
-//   }
-// }
-
-// .main {
-//   padding: $base-padding;
-// }
-
-// .inline-create {
-//   #claim_value {
-//     width: 100%;
-//   }
-// }
-
-// .form-block {
-//   width: 100%;
-// }
-
-// .text-center {
-//   text-align: center;
-// }
-
-// .table-fixed {
-//   table-layout: fixed;
-//   width: 100%;
-//   .table-col-xs {width: 10%}
-//   .table-col-sm {width: 20%}
-//   .table-col-md {width: 40%}
-//   .table-col-lg {width: 80%}
-// }
 
 .padding-left {
   padding-left: 1em;
@@ -292,4 +121,28 @@
   .editable {
     display: inherit;
   }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+
+body {
+  color: rgba(10,15,21,0.8);
+  font-family: 'Arimo', sans-serif;
+}
+
+.navbar-default .navbar-brand {
+  color: $ac-red;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: darken($ac-red, 6%);
+}
+
+.navbar-top-links li a {
+  color: rgba(100,100,100,1);
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  color: $ac-red;
+  background-color: inherit;
 }

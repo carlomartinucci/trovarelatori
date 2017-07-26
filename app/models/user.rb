@@ -80,9 +80,11 @@ class User < ActiveRecord::Base
     # TODO: se q non è nil, mostriamo cose veramente correlate con q. altrimenti questo è ok
     known_topics = self.known_topics.includes(:topic).where(knowledge: :interested)
     topics = Topic.where(id: known_topics.pluck(:topic_id))
+    topics = Topic.limit(5).order("RANDOM()") if topics.none?
+
     themes = Theme.where(id: topics.pluck(:theme_id).uniq)
     potential_expert_ids = KnownTopic.where(topic_id: topics.pluck(:id)).pluck(:user_id).uniq
-    experts = User.where(id: potential_expert_ids).sort_by{|u| - u.score(topics)}
+    experts = User.where(id: potential_expert_ids).where.not(id: self.id).sort_by{|u| - u.score(topics)}
 
     result = {}
     result[:topics] = topics

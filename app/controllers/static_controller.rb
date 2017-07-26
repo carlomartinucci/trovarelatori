@@ -8,6 +8,7 @@ class StaticController < ApplicationController
   end
 
   def help
+    @additional_stylesheet = "medium"
     render layout: "knowledge"
   end
 end
