@@ -22,14 +22,14 @@
 <body>
   <div id="wrapper" style="max-width: 760px; margin-left: auto; margin-right: auto; min-height: 100vh;">
 
-    <%= render partial: 'layouts/knowledge/navigation' %>
+    <%= render partial: 'layouts/navigation' %>
 
     <div id="page-wrapper" style="margin-left: 0;">
       <div style="height: 1px;"></div>
       <%= yield %>
 
     </div>
-    <%= render partial: 'layouts/knowledge/footer' %>
+    <%= render partial: 'layouts/footer' %>
   </div>
   <%= render partial: 'layouts/toastr' %>
   
