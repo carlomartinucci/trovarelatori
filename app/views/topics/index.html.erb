@@ -39,13 +39,5 @@
   </tbody>
 </table>
 
-<script type="text/javascript">
-  $(function(){
-    $(document).on("click", '[data-form="true"]', function(e){
-      e.preventDefault();
-      var form = $("form#known-topic-for-topic-" + $(this).data("topic-id"))
-      $(form).find(".form-knowledge").val($(this).data("knowledge"));
-      $(form).submit();
-    });
-  });
-</script>
+
+<%= render partial: "new", locals: {topic: Topic.new} if can? :create, Topic %>

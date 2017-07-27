@@ -36,3 +36,23 @@ function toggleSuggested(query) {
     $("#suggested").show();
   }
 }
+
+$(document).on("click", '[data-form="true"]', function(e){
+  e.preventDefault();
+  var form = $("form#known-topic-for-topic-" + $(this).data("topic-id"))
+  $(form).find(".form-knowledge").val($(this).data("knowledge"));
+  $(form).submit();
+});
+
+$(document).on("click", ".btn-edit-mode", function(){
+  $(".show-mode").removeClass("show-mode").addClass("edit-mode");
+});
+$(document).on("click", ".btn-show-mode", function(){
+  $(".edit-mode").removeClass("edit-mode").addClass("show-mode");
+});
+
+$(document).on("click", ".show-more", function(e){
+  e.preventDefault();
+  $(".tr-theme-" + $(this).data("theme-id")).removeClass("hidden");
+  $(this).parents("tr").remove();
+});
