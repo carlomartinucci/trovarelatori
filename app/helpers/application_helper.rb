@@ -1,32 +1,32 @@
 module ApplicationHelper
 
-  def backendSidebarThemes themes
-    return if themes.blank?
-    themes.map do |theme|
-      content_tag :li do
-        link_to theme.breadcrumb, [:backend, theme]
-      end
-    end.join.html_safe
-  end
+  # def backendSidebarThemes themes
+  #   return if themes.blank?
+  #   themes.map do |theme|
+  #     content_tag :li do
+  #       link_to theme.breadcrumb, [:backend, theme]
+  #     end
+  #   end.join.html_safe
+  # end
 
-  def backendNavLinks links
-    links.map{|my_model| backendNavLink my_model }.join.html_safe
-  end
+  # def backendNavLinks links
+  #   links.map{|my_model| backendNavLink my_model }.join.html_safe
+  # end
 
-  def backendNavLink my_model
-    content_tag :li do
-      backendNavLinkWrapper my_model do
-        # fa_icon :envelope, text: my_model.model_name.human(count: 2)
-        my_model.model_name.human(count: 2)
-      end
-    end
-  end
+  # def backendNavLink my_model
+  #   content_tag :li do
+  #     backendNavLinkWrapper my_model do
+  #       # fa_icon :envelope, text: my_model.model_name.human(count: 2)
+  #       my_model.model_name.human(count: 2)
+  #     end
+  #   end
+  # end
 
-  def backendNavLinkWrapper my_model 
-    return params[:controller] == my_model.model_name.route_key && params[:action] == "index" ?
-      content_tag(:span) { yield } :
-      link_to("/backend/#{my_model.model_name.route_key}") { yield }
-  end
+  # def backendNavLinkWrapper my_model 
+  #   return params[:controller] == my_model.model_name.route_key && params[:action] == "index" ?
+  #     content_tag(:span) { yield } :
+  #     link_to("/backend/#{my_model.model_name.route_key}") { yield }
+  # end
 
   def markdown(text)
     options = {
@@ -48,5 +48,11 @@ module ApplicationHelper
 
     markdown.render(text).html_safe
   end
+
+  def toastr_error model
+    "#{pluralize(model.errors.count, "errore", "errori")}: #{model.errors.full_messages.to_sentence}"
+  end
+
+
 
 end

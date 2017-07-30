@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :set_topic, only: [:show]
   before_action :set_theme, only: [:show]
 
   # GET /topics
@@ -20,15 +20,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  # GET /topics/new
-  def new
-    @topic = Topic.new
-  end
-
-  # GET /topics/1/edit
-  def edit
-  end
-
   # POST /topics
   # POST /topics.json
   def create
@@ -36,36 +27,12 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to request.referer, notice: 'Argomento creato correttamente.' }
+        format.html { redirect_to request.referer, notice: "Argomento #{@topic.name} creato correttamente." }
         format.json { render :show, status: :created, location: @topic }
       else
-        format.html { render :new }
+        format.html { redirect_to request.referer, alert: ApplicationController.helpers.toastr_error(@topic) }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
-  def update
-    respond_to do |format|
-      if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
-        format.json { render :show, status: :ok, location: @topic }
-      else
-        format.html { render :edit }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /topics/1
-  # DELETE /topics/1.json
-  def destroy
-    @topic.destroy
-    respond_to do |format|
-      format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

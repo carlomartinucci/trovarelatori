@@ -13,9 +13,10 @@
 class Topic < ActiveRecord::Base
   belongs_to :theme
   has_many :known_topics
-  validates_presence_of :theme, :name
+  validates_presence_of :theme_id, :name
+  validates_uniqueness_of :name, scope: [:theme_id]
 
-  # after_commit :set_keywords, on: :create
+  after_commit :set_keywords, on: :create
 
   include PgSearch
 
@@ -50,4 +51,6 @@ class Topic < ActiveRecord::Base
     keywords = keywords_list.map{|k|k.gsub(",","")}.join(",").downcase
     self.update keywords: keywords
   end
+
+
 end

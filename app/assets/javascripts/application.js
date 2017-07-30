@@ -56,3 +56,10 @@ $(document).on("click", ".show-more", function(e){
   $(".tr-theme-" + $(this).data("theme-id")).removeClass("hidden");
   $(this).parents("tr").remove();
 });
+
+$(document).on("change", "#topic_theme_id", function(e){
+  $(".topics-list").addClass("hidden");
+  if (this.value) {
+    $(".topics-list-theme-" + this.value).removeClass("hidden");
+  }
+})

@@ -1,4 +1,10 @@
 <h1>Tutti gli argomenti</h1>
+
+<div class="panel-group" id="accordion">
+  <%= render partial: "themes/new", locals: {theme: Theme.new, themes: @themes} if can? :create, Theme %>
+  <%= render partial: "new", locals: {topic: Topic.new, themes: @themes} if can? :create, Topic %>
+</div>
+
 <p>Tutti gli argomenti, divisi per tema, con l'indicazione del numero di persone per ogni grado di conoscenza, il tuo grado di conoscenza e la possibilità di modificarlo.</p>
 <% KnownTopic::KNOWLEDGES.each do |knowledge| %>
   <p>
@@ -39,5 +45,3 @@
   </tbody>
 </table>
 
-
-<%= render partial: "new", locals: {topic: Topic.new} if can? :create, Topic %>

@@ -1,15 +1,25 @@
 <%= form_for(topic) do |f| %>
 
-  <div class="field">
-    <% raise "TODO: SELECT SUL THEME, STILE, ABILITY" %>
-    <%= f.label :theme_id %><br>
-    <%= f.number_field :theme_id %>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        Tema:
+      </span>
+      <%= f.collection_select :theme_id, Theme.all, :id, :name, {prompt: "Seleziona un tema"}, required: true, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+
+
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        Nome dell'argomento:
+      </span>
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group">
+    <%= f.submit "Aggiungi", class: "btn btn-primary" %>
   </div>
 <% end %>

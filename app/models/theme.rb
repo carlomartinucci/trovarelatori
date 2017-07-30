@@ -15,6 +15,9 @@ class Theme < ActiveRecord::Base
 
   default_scope { order(created_at: :desc) }
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
   def breadcrumb
     self.name
   end

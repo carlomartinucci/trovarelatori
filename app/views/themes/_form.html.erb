@@ -1,0 +1,14 @@
+<%= form_for(theme) do |f| %>
+  <div class="form-group">
+    <div class="input-group">
+      <span class="input-group-addon">
+        Nome del tema:
+      </span>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Aggiungi", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,5 +1,25 @@
-<h1>New Topic</h1>
+<div class="panel panel-primary" id="">
+  <div class="panel-heading">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" class="">
+      <h4 class="panel-title">
+        Crea un nuovo argomento
+      </h4>
+    </a>
 
-<%= render partial: 'form', locals: {topic: topic} %>
+  </div>
+  <div class="panel-collapse collapse" id="collapseTwo">
+    <div class="panel-body">
+      <%= render partial: 'form', locals: {topic: topic} %>
+    </div>
 
-<%= link_to 'Back', topics_path %>
+    <div class="panel-footer">
+      <% themes.each do |theme| %>
+        <div class="topics-list topics-list-theme-<%= theme.id %> hidden">
+          Argomenti già presenti nel tema <%= theme.name%>: <%= theme.topics.pluck(:name).uniq.join(", ") %>.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
