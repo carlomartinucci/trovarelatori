@@ -6,7 +6,7 @@
         <tr class="divider">
           <td colspan="100" class="text-center">
             <small>
-              <%= link_to "Mostra tutti (altri #{records.count - index})", "#", class: "show-more", data: {type: type} %>
+              <%= link_to "Mostra tutti (altri #{records.count - index})", "#", class: "show-more", data: {show_selector: ".tr-type-#{type}"} %>
             </small>
           </td>
         </tr>

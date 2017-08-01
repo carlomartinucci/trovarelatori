@@ -1,5 +1,7 @@
+<% if can?(:edit_themes, @user) && !current_user?(@user) %>
+  <%= button_tag "EDIT MODE", class: "btn btn-info btn-edit-mode pull-right", style: "margin-top: 20px;" %>
+<% end %>
 <h1><%= @user.name %></h1>
-
 <%= render partial: "user_anagraphics", locals: {user: @user} %>
 
 
@@ -8,7 +10,7 @@
   
     <% @themes.sort_by{|theme| - @user.score(theme) }.each do |theme| %>
     <% next if theme.topics.none? %>
-    <% next if !current_user?(@user) && theme.topics.known_topics(@user).blank? %>
+    <% next if cannot?(:edit_themes, @user) && theme.topics.known_topics(@user).blank? %>
 
       <tr>
         <th colspan="10" class="text-center">
@@ -22,11 +24,11 @@
 
         <% if !unknown_found && known_topic.knowledge_blank_or_unknown? %>
           <% unknown_found = true %>
-          <% if current_user?(@user) %>
+          <% if can?(:edit_themes, @user) %>
             <tr class="divider">
               <td colspan="100" class="text-center">
                 <small>
-                  <%= link_to "Mostra sconosciuti (#{theme.topics.count - index} argomenti)", "#", class: "show-more", data: {theme_id: theme.id} %>
+                  <%= link_to "Mostra sconosciuti (#{theme.topics.count - index} argomenti)", "#", class: "show-more", data: {show_selector: ".tr-theme-#{theme.id}"} %>
                 </small>
               </td>
             </tr>

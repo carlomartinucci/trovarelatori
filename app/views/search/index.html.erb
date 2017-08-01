@@ -8,13 +8,3 @@
 <div id="suggested">
   <%= render partial: "suggested", locals: {searchs: @searchs} %>
 </div>
-
-<script type="text/javascript">
-  $(function(){
-    $(document).on("click", ".show-more", function(e){
-      e.preventDefault();
-      $(".tr-type-" + $(this).data("type")).removeClass("hidden");
-      $(this).parents("tr").remove();
-    });
-  });
-</script>

@@ -11,7 +11,7 @@
         <%= render partial: 'themes/form', locals: {theme: theme} %>
     </div>
     <div class="panel-footer">
-      Temi già presenti: <%= themes.pluck(:name).uniq.join(", ") %>.
+      Temi già presenti: <%= list_names themes.pluck(:name) %>.
     </div>
   </div>
 </div>

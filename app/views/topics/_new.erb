@@ -15,7 +15,7 @@
     <div class="panel-footer">
       <% themes.each do |theme| %>
         <div class="topics-list topics-list-theme-<%= theme.id %> hidden">
-          Argomenti già presenti nel tema <%= theme.name%>: <%= theme.topics.pluck(:name).uniq.join(", ") %>.
+          Argomenti già presenti nel tema <%= theme.name %>: <%= list_names theme.topics.pluck(:name) %>.
         </div>
       <% end %>
     </div>

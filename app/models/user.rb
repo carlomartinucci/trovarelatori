@@ -19,7 +19,7 @@
 #  updated_at             :datetime         not null
 #  first_name             :string
 #  phone                  :string
-#  second_name            :string
+#  last_name              :string
 #  gender                 :string
 #  city                   :string
 #  birthday               :datetime
@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def name
-    "#{first_name} #{second_name}"
+    "#{first_name} #{last_name}"
   end
 
   def public_name

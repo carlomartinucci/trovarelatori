@@ -69,7 +69,7 @@
           <tr class="divider <%= "hidden" if hidden %>">
             <td colspan="100" class="text-center">
               <small>
-                <%= link_to "Mostra tutti (altri #{users.count - 5})", "#", class: "show-more", data: {knowledge: knowledge} %>
+                <%= link_to "Mostra tutti (altri #{users.count - 5})", "#", class: "show-more", data: {show_selector: ".tr-#{knowledge}"} %>
               </small>
             </td>
           </tr>
@@ -94,17 +94,3 @@
 
   </tbody>
 </table>
-
-
-<script type="text/javascript">
-  $(function(){
-    $(document).on("change", '[data-submit-on-change="true"]', function(){
-      $(this).submit();
-    });
-    $(document).on("click", ".show-more", function(e){
-      e.preventDefault();
-      $(".tr-" + $(this).data("knowledge")).removeClass("hidden");
-      $(this).parents("tr").remove();
-    });
-  });
-</script>

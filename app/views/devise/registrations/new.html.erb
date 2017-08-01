@@ -1,10 +1,20 @@
 <div class="row">
-<div class="col-md-4 col-md-offset-4 col-xs-12">
+<div class="col-md-8 col-md-offset-2 col-xs-12">
   
   <h2>Registrati</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
+
+    <div style="margin: 10px 0;">
+      <%= f.label :first_name, "Nome" %>*<br />
+      <%= f.text_field :first_name, class: "form-control" %>
+    </div>
+
+    <div style="margin: 10px 0;">
+      <%= f.label :last_name, "Cognome" %>*<br />
+      <%= f.text_field :last_name, class: "form-control" %>
+    </div>
 
     <div style="margin: 10px 0;">
       <%= f.label :email %>*<br />
@@ -24,17 +34,33 @@
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
     </div>
 
-    <div style="margin: 10px 0;">
-      <%= f.label :name, "Nome" %> <em>(Facoltativo)</em><br />
-      <%= f.password_field :name, class: "form-control" %>
+    <div class="divider text-center" style="margin-bottom: 10px;">
+      <%= link_to "Inserisci anche i dati opzionali", "#", class: "show-more", data: {show_selector: ".optional-field"} %>, oppure
     </div>
 
-    <div style="margin: 10px 0;">
-      <%= f.label :phone, "Cellulare" %> <em>(Facoltativo)</em><br />
-      <%= f.password_field :phone, class: "form-control" %>
+    <div class="optional-field hidden" style="margin: 10px 0;">
+      <%= f.label :phone, "Cellulare" %><br />
+      <%= f.text_field :phone, class: "form-control" %>
     </div>
 
-    <!-- <div>&nbsp;</div> -->
+    <div class="optional-field hidden" style="margin: 10px 0;">
+      <%= f.label :gender, "Sesso" %><br />
+      <%= f.select :gender, [["Maschio", "male"], ["Femmina", "female"]], {prompt: "", allow_blank: false, default: "male"}, class: "form-control" %>
+    </div>
+
+    <div class="optional-field hidden" style="margin: 10px 0;">
+      <%= f.label :city, "Città" %><br />
+      <%= f.text_field :city, class: "form-control" %>
+    </div>
+
+    <div class="optional-field hidden" style="margin: 10px 0;">
+      <%= f.label :birthday, "Compleanno" %><br />
+      <div class="row" style="margin: 0 -5px;">
+        <div class="col-xs-4" style='padding: 0 5px;'>
+          <%= f.date_select :birthday, {date_separator: "</div><div class='col-xs-4' style='padding: 0 5px;'>", start_year: 1900, end_year: 10.years.ago.year, default: Time.parse("1 jan 1990")}, class: "form-control" %>
+        </div>
+      </div>
+    </div>
 
     <div class="actions">
       <%= f.submit "Registrati", class: "btn btn-primary btn-block" %>

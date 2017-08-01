@@ -43,6 +43,9 @@ $(document).on("click", '[data-form="true"]', function(e){
   $(form).find(".form-knowledge").val($(this).data("knowledge"));
   $(form).submit();
 });
+$(document).on("change", '[data-submit-on-change="true"]', function(){
+  $(this).submit();
+});
 
 $(document).on("click", ".btn-edit-mode", function(){
   $(".show-mode").removeClass("show-mode").addClass("edit-mode");
@@ -53,8 +56,10 @@ $(document).on("click", ".btn-show-mode", function(){
 
 $(document).on("click", ".show-more", function(e){
   e.preventDefault();
-  $(".tr-theme-" + $(this).data("theme-id")).removeClass("hidden");
-  $(this).parents("tr").remove();
+  var showSelector = $(this).data("show-selector");
+  var hideSelector = $(this).data("hide-selector") || ".divider";
+  $(showSelector).removeClass("hidden");
+  $(this).parents(hideSelector).remove();
 });
 
 $(document).on("change", "#topic_theme_id", function(e){

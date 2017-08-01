@@ -53,6 +53,8 @@ module ApplicationHelper
     "#{pluralize(model.errors.count, "errore", "errori")}: #{model.errors.full_messages.to_sentence}"
   end
 
-
+  def list_names names
+    names.uniq.map{|name| content_tag :span, name, style: "text-decoration: underline;"}.join(", ").html_safe
+  end
 
 end

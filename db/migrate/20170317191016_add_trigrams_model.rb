@@ -1,3 +1,3 @@
 class AddTrigramsModel < ActiveRecord::Migration
-  extend Fuzzily::Migration
+  # extend Fuzzily::Migration
 end

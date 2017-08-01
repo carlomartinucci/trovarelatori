@@ -5,13 +5,3 @@
 <div id="results">
   <%= render partial: "results", locals: {experts: @experts, topics: @topics, users: @users, q: @q} %>
 </div>
-
-<script type="text/javascript">
-  $(function(){
-    $(document).on("click", ".show-more", function(e){
-      e.preventDefault();
-      $(".tr-type-" + $(this).data("type")).removeClass("hidden");
-      $(this).parents("tr").remove();
-    });
-  });
-</script>

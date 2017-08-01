@@ -1,6 +1,7 @@
 class KnownTopicsController < ApplicationController
   before_action :set_known_topic, only: [:update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:update, :create]
+  authorize_resource
 
   # POST /known_topics
   def create

@@ -9,10 +9,10 @@
   </td>
 
 
-  <% if current_user?(user) %>
-    <td>
+  <% if can?(:edit_themes, user) %>
+    <td class="<%= current_user?(user) ? 'edit-mode' : 'show-mode' %>">
       
-      <ul class="nav">
+      <ul class="nav editable">
         <li class="dropdown">
           <a class="dropdown-toggle text-center" data-toggle="dropdown" href="#" style="padding: 0;">
             <i class="fa fa-cog"></i>
@@ -20,7 +20,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
             <li><a>
-              Il tuo grado di conoscenza
+              Modifica:
             </a></li>
             <li class="divider"></li>
             <li class="<%= known_topic.knowledge.blank? ? "active" : "" %>">
@@ -41,7 +41,7 @@
       <%= form_for known_topic, html: {id:"known-topic-for-topic-#{topic.id}"}, remote: true do |f| %>
         <%= f.hidden_field :knowledge, value: "", class: "form-knowledge" %>
         <%= f.hidden_field :topic_id, value: topic.id %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :user_id, value: user.id %>
         <%= hidden_field_tag :from, :users %>
       <% end %>
 
