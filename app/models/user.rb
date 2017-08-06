@@ -76,6 +76,16 @@ class User < ActiveRecord::Base
     known_topics.score
   end
 
+  def role
+    if self.admin?
+      "admin"
+    elsif self.editor?
+      "editor"
+    else
+      "none"
+    end
+  end
+
   def correlated_searchs q=nil
     # TODO: se q non è nil, mostriamo cose veramente correlate con q. altrimenti questo è ok
     known_topics = self.known_topics.includes(:topic).where(knowledge: :interested)

@@ -11,6 +11,13 @@
         <i class="fa fa-cog fa-fw"></i> <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user">
+        <% if can? :index, User %>
+          <li>
+            <%= link_to users_path do %> 
+              <i class="fa fa-users fa-fw"></i> Tutti
+            <% end %>
+          </li>
+        <% end %>
         <li>
           <%= link_to current_user do %> 
             <i class="fa fa-user fa-fw"></i> <%= current_user.name %>
