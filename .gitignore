@@ -18,3 +18,7 @@
 
 # Ignore internal docs
 /internaldocs
+
+# ignore .rubocop
+.rubocop.yml
+.rubocop_todo.yml

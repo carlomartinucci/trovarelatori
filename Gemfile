@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '5.1.0'
 
 gem 'sass-rails'
+gem 'listen'
 gem 'bootstrap_sb_admin_base_v2'
 
 # Use Uglifier as compressor for JavaScript assets
