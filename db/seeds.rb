@@ -8,7 +8,9 @@
 
 # (1..100).to_a.each do |i|
 
-#   user = User.create(email: "user#{i}@email.email", password: "asdasdasd", first_name: "Nome #{i}", last_name: "Cognome #{i}")
+#   user = User.create(
+#     email: "user#{i}@email.email", password: "asdasdasd", first_name: "Nome #{i}", last_name: "Cognome #{i}"
+#   )
 
 #   Topic.all.sample(25).each do |topic|
 #     k = topic.known_topic user
@@ -16,8 +18,21 @@
 #   end
 # end
 
-# User.where(email: "carlo.martinucci@gmail.com").first_or_initialize.update(password: "trovarelatori", first_name: "Carlo", last_name: "Martinucci", admin: true, phone: "3391326366", gender: "male", city: "Padova", public_phone: false, public_email: true, public_city: true, public_birthday: false)
-User.where(email: 'costanza.albe@gmail.com').first_or_initialize.update(password: 'trovarelatori', first_name: 'Costanza', last_name: 'Albè', gender: 'female', city: 'Padova', public_phone: false, public_email: true, public_city: true, public_birthday: false)
+# User.where(email: "carlo.martinucci@gmail.com").first_or_initialize.update(
+#   password: "trovarelatori", first_name: "Carlo", last_name: "Martinucci", admin: true, phone: "3391326366",
+#   gender: "male", city: "Padova", public_phone: false, public_email: true, public_city: true, public_birthday: false
+# )
+# User.where(email: 'costanza.albe@gmail.com').first_or_initialize.update(
+#   password: 'trovarelatori',
+#   first_name: 'Costanza',
+#   last_name: 'Albè',
+#   gender: 'female',
+#   city: 'Padova',
+#   public_phone: false,
+#   public_email: true,
+#   public_city: true,
+#   public_birthday: false
+# )
 
 [
   ['Bioetica', [
@@ -164,7 +179,7 @@ User.where(email: 'costanza.albe@gmail.com').first_or_initialize.update(password
   theme = Theme.where(name: theme_name).first_or_create
   topic_names.each do |topic_name|
     topic = Topic.where(theme_id: theme.id, name: topic_name).first_or_create
-    topic.set_keywords true
+    topic.update_keywords true
     sleep 0.5
   end
 end

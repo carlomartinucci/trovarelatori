@@ -38,8 +38,8 @@ class KnownTopic < ApplicationRecord
     index ? (index + 1) * 0.99 : 0
   end
 
-  def <=>(other_known_topic)
-    other_known_topic.score <=> self.score
+  def <=>(other)
+    other.score <=> self.score
   end
 
   def self.score
@@ -49,7 +49,7 @@ class KnownTopic < ApplicationRecord
   private
 
     def set_default_knowledge
-      self.knowledge = 'unknown' if !self.knowledge.in? KNOWLEDGES
+      self.knowledge = 'unknown' unless self.knowledge.in? KNOWLEDGES
     end
 
     def destroy_if_unknown

@@ -14,7 +14,7 @@ module KnownTopicsHelper
              :institution
            else
              :question
-    end
+           end
     fa_icon icon, options
   end
 end

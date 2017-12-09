@@ -1,31 +1,29 @@
 module UsersHelper
-  def user_age(dob)
-    return nil if dob.blank?
+  def user_age(date_of_birth)
+    return nil if date_of_birth.blank?
     now = Time.now.utc.to_date
-    now.year - dob.year - (now.month > dob.month || (now.month == dob.month && now.day >= dob.day) ? 0 : 1)
+    after_birthday = now.month > date_of_birth.month ||
+      (now.month == date_of_birth.month && now.day >= date_of_birth.day)
+    now.year - date_of_birth.year - (after_birthday ? 0 : 1)
   end
 
   def show_if_public(user, attribute)
     if user.send("public_#{attribute}")
       show_visible user, attribute
+    elsif attribute == :birthday && user.birthday.present?
+      "#{user_age user.birthday} anni"
     else
-      if attribute == :birthday
-        user.birthday ?
-          "#{user_age user.birthday} anni" :
-          content_tag(:em, 'Privato')
-      else
-        content_tag :em, 'Privato'
-      end
+      content_tag :em, 'Privato'
     end
   end
 
   def show_visible(user, attribute)
     if attribute == :email
       mail_to user.email, user.email
+    elsif attribute == :birthday && user.birthday.present?
+      "#{l user.birthday} (#{user_age user.birthday} anni)"
     elsif attribute == :birthday
-      user.birthday ?
-        "#{l user.birthday} (#{user_age user.birthday} anni)" :
-        'Sconosciuto'
+      'Sconosciuto'
     else
       user.send(attribute) || 'Sconosciuto'
     end
@@ -36,7 +34,7 @@ module UsersHelper
                           content_tag :em, 'Pubblico'
                         else
                           content_tag :em, 'Privato'
-    end
+                        end
     "(#{visibility_string})".html_safe
   end
 

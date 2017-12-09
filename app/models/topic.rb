@@ -16,7 +16,7 @@ class Topic < ApplicationRecord
   validates_presence_of :theme_id, :name
   validates_uniqueness_of :name, scope: [:theme_id]
 
-  after_commit :set_keywords, on: :create
+  # after_commit :update_keywords, on: :create
 
   include PgSearch
 
@@ -40,7 +40,7 @@ class Topic < ApplicationRecord
     KnownTopic.where(user_id: user.id, topic_id: ids)
   end
 
-  def set_keywords(force = false)
+  def update_keywords(force = false)
     p "setting keywords for topic #{self.name}"
     keywords_list = [self.name, self.theme.name]
     if Rails.env.production? || force

@@ -40,6 +40,7 @@ class SearchController < ApplicationController
       expert_ids = KnownTopic.where(topic_id: @topics.pluck(:id)).pluck(:user_id)
       @experts = User.where(id: expert_ids).each do |u|
         u.expertise = @topics.known_topics u
-      end.sort_by { |u| - u.score(@topics) }
+      end
+      @experts = @experts.sort_by { |u| - u.score(@topics) }
     end
 end

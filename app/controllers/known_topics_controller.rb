@@ -17,13 +17,14 @@ class KnownTopicsController < ApplicationController
 
   # PATCH/PUT /known_topics/1
   def update
-    @from = params[:from]
+    updated = @known_topic.update(known_topic_params)
+
     respond_to do |format|
-      if @known_topic.update(known_topic_params)
-        format.html { redirect_to request.referer }
+      format.html { redirect_to request.referer }
+      if updated
+        @from = params[:from]
         format.js {}
       else
-        format.html { redirect_to request.referer }
         format.js { render js: 'window.location.reload();' }
       end
     end

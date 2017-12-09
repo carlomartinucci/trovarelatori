@@ -66,8 +66,6 @@ class User < ApplicationRecord
   def score(scope = nil)
     if scope.nil?
       known_topics = self.known_topics
-    elsif scope.is_a? Topic::ActiveRecord_Relation
-      known_topics = scope.known_topics self
     elsif scope.is_a? Theme
       known_topics = scope.known_topics self
     else
