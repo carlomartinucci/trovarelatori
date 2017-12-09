@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # def backendSidebarThemes themes
   #   return if themes.blank?
   #   themes.map do |theme|
@@ -22,7 +21,7 @@ module ApplicationHelper
   #   end
   # end
 
-  # def backendNavLinkWrapper my_model 
+  # def backendNavLinkWrapper my_model
   #   return params[:controller] == my_model.model_name.route_key && params[:action] == "index" ?
   #     content_tag(:span) { yield } :
   #     link_to("/backend/#{my_model.model_name.route_key}") { yield }
@@ -32,7 +31,7 @@ module ApplicationHelper
     options = {
       filter_html:     true,
       hard_wrap:       true,
-      link_attributes: { rel: 'nofollow', target: "_blank" },
+      link_attributes: { rel: 'nofollow', target: '_blank' },
       space_after_headers: true,
       fenced_code_blocks: true
     }
@@ -49,12 +48,11 @@ module ApplicationHelper
     markdown.render(text).html_safe
   end
 
-  def toastr_error model
-    "#{pluralize(model.errors.count, "errore", "errori")}: #{model.errors.full_messages.to_sentence}"
+  def toastr_error(model)
+    "#{pluralize(model.errors.count, 'errore', 'errori')}: #{model.errors.full_messages.to_sentence}"
   end
 
-  def list_names names
-    names.uniq.map{|name| content_tag :span, name, style: "text-decoration: underline;"}.join(", ").html_safe
+  def list_names(names)
+    names.uniq.map { |name| content_tag :span, name, style: 'text-decoration: underline;' }.join(', ').html_safe
   end
-
 end

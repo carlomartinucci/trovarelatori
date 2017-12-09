@@ -1,6 +1,6 @@
 class KnownTopicsController < ApplicationController
-  before_action :set_known_topic, only: [:update, :destroy]
-  skip_before_action :verify_authenticity_token, only: [:update, :create]
+  before_action :set_known_topic, only: %i[update destroy]
+  skip_before_action :verify_authenticity_token, only: %i[update create]
   authorize_resource
 
   # POST /known_topics
@@ -11,7 +11,7 @@ class KnownTopicsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to request.referer }
-      format.js { render "update" }
+      format.js { render 'update' }
     end
   end
 
@@ -24,7 +24,7 @@ class KnownTopicsController < ApplicationController
         format.js {}
       else
         format.html { redirect_to request.referer }
-        format.js { render js: "window.location.reload();"}
+        format.js { render js: 'window.location.reload();' }
       end
     end
   end
@@ -36,11 +36,12 @@ class KnownTopicsController < ApplicationController
     @known_topic.destroy
     respond_to do |format|
       format.html { redirect_to known_topics_url, notice: 'Known topic was successfully destroyed.' }
-      format.js { render "update" }
+      format.js { render 'update' }
     end
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_known_topic
       @known_topic = KnownTopic.find(params[:id])

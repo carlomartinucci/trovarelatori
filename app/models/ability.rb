@@ -18,6 +18,5 @@ class Ability
         known_topic.user_id == user.id
       end
     end
-
   end
 end

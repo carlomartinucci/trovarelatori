@@ -8,6 +8,6 @@ class StaticController < ApplicationController
   end
 
   def help
-    @additional_stylesheet = "medium"
+    @additional_stylesheet = 'medium'
   end
 end

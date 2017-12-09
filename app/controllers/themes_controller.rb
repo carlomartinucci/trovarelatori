@@ -1,5 +1,4 @@
 class ThemesController < ApplicationController
-
   # POST /themes
   # POST /themes.json
   def create
@@ -17,6 +16,7 @@ class ThemesController < ApplicationController
   end
 
   private
+
     def theme_params
       params.require(:theme).permit(:theme_id, :name)
     end

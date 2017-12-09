@@ -11,7 +11,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
-    @knowledge = params[:knowledge] || "all"
+    @knowledge = params[:knowledge] || 'all'
     known_topics_grouped = @topic.known_topics.group_by(&:knowledge)
     @users_grouped = {}
     KnownTopic::KNOWLEDGES.each do |knowledge|
@@ -37,6 +37,7 @@ class TopicsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
       @topic = Topic.find(params[:id])

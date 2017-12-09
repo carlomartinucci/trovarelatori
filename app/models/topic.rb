@@ -29,28 +29,24 @@ class Topic < ApplicationRecord
                     }
                   }
 
-
-  def known_topic user
+  def known_topic(user)
     k = known_topics.where(user_id: user.id, topic_id: self.id).first_or_initialize
     # p "known_topic: #{k.attributes}"
     k
   end
 
-  def self.known_topics user
+  def self.known_topics(user)
     ids = self.all.pluck(:id)
     KnownTopic.where(user_id: user.id, topic_id: ids)
   end
 
-
-  def set_keywords(force=false)
+  def set_keywords(force = false)
     p "setting keywords for topic #{self.name}"
     keywords_list = [self.name, self.theme.name]
     if Rails.env.production? || force
       keywords_list += GoogleKnowledgeGraph.new(self.name).list
     end
-    keywords = keywords_list.map{|k|k.gsub(",","")}.join(",").downcase
+    keywords = keywords_list.map { |k| k.delete(',') }.join(',').downcase
     self.update keywords: keywords
   end
-
-
 end

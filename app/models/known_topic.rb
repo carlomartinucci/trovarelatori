@@ -15,7 +15,7 @@ class KnownTopic < ApplicationRecord
   belongs_to :user
   belongs_to :topic
 
-  KNOWLEDGES = %w(interested private public debate)
+  KNOWLEDGES = %w[interested private public debate].freeze
 
   validates_uniqueness_of :topic, scope: [:user_id]
   validates_inclusion_of :knowledge, in: KNOWLEDGES
@@ -26,7 +26,7 @@ class KnownTopic < ApplicationRecord
   after_update :destroy_if_unknown
 
   def knowledge_unknown?
-    self.knowledge == "unknown"
+    self.knowledge == 'unknown'
   end
 
   def knowledge_blank_or_unknown?
@@ -38,7 +38,7 @@ class KnownTopic < ApplicationRecord
     index ? (index + 1) * 0.99 : 0
   end
 
-  def <=> other_known_topic
+  def <=>(other_known_topic)
     other_known_topic.score <=> self.score
   end
 
@@ -46,15 +46,13 @@ class KnownTopic < ApplicationRecord
     self.all.map(&:score).sum
   end
 
-
   private
 
     def set_default_knowledge
-      self.knowledge = "unknown" if !self.knowledge.in? KNOWLEDGES
+      self.knowledge = 'unknown' if !self.knowledge.in? KNOWLEDGES
     end
 
     def destroy_if_unknown
       self.destroy if self.knowledge_unknown?
     end
-
 end

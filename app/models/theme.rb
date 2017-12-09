@@ -22,8 +22,7 @@ class Theme < ApplicationRecord
     self.name
   end
 
-  def known_topics user
+  def known_topics(user)
     self.topics.known_topics user
   end
-
 end
