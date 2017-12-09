@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-
-gem 'rails', '4.2.3'
+gem 'rails', '5.0.0'
 
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap_sb_admin_base_v2'
@@ -82,4 +81,4 @@ group :production do
   gem 'rails_12factor'
 end
 
-ruby "2.3.1"
+ruby "2.4.0"

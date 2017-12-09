@@ -10,11 +10,11 @@
 #  updated_at :datetime         not null
 #
 
-class KnownTopic < ActiveRecord::Base
+class KnownTopic < ApplicationRecord
   includes Comparable
   belongs_to :user
   belongs_to :topic
-  
+
   KNOWLEDGES = %w(interested private public debate)
 
   validates_uniqueness_of :topic, scope: [:user_id]
@@ -34,7 +34,7 @@ class KnownTopic < ActiveRecord::Base
   end
 
   def score
-    index = KNOWLEDGES.index self.knowledge 
+    index = KNOWLEDGES.index self.knowledge
     index ? (index + 1) * 0.99 : 0
   end
 

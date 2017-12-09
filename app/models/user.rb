@@ -29,7 +29,7 @@
 #  public_birthday        :boolean          default(FALSE)
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   has_many :journeys
   has_many :known_topics
   has_many :topics, through: :known_topics
-  
+
   attr_writer :expertise
   def expertise
     @expertise ||= []
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
   GENDERS = ["", "male", "famale"]
   before_validation :set_gender
-  validates_inclusion_of :gender, in: GENDERS 
+  validates_inclusion_of :gender, in: GENDERS
 
   def favorite_themes
     ids = self.favorites.where(favoritable_type: "Theme").pluck(:favoritable_id)
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
   def public_name
     true
   end
-  
+
   private
     def set_gender
       self.gender ||= ""

@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class Topic < ActiveRecord::Base
+class Topic < ApplicationRecord
   belongs_to :theme
   has_many :known_topics
   validates_presence_of :theme_id, :name

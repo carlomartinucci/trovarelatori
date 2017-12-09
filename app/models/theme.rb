@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 
-class Theme < ActiveRecord::Base
+class Theme < ApplicationRecord
   has_many :arguments
   has_many :favorites, as: :favoritable
   has_many :topics
